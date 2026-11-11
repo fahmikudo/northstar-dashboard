@@ -1,0 +1,119 @@
+/*
+ * App-level aliases over Astryx theme tokens. Charts reference these so a theme
+ * swap is the only change needed; never put literal colors here.
+ */
+:root {
+  --app-series-1: var(--color-data-categorical-blue);
+  --app-series-2: var(--color-data-categorical-orange);
+  --app-series-3: var(--color-data-categorical-green);
+  --app-series-4: var(--color-data-categorical-purple);
+  --app-series-5: var(--color-data-neutral);
+  --app-chart-grid: var(--color-border);
+  --app-chart-axis: var(--color-text-secondary);
+}
+
+/*
+ * Collapse handle pinned to the sidebar/content seam. Structural widths mirror
+ * SideNav's 260px expanded rail and 48px collapsed rail.
+ */
+.app-sidebar-toggle {
+  position: fixed;
+  top: 50%;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+}
+
+.app-sidebar-toggle--expanded {
+  left: 260px;
+}
+
+.app-sidebar-toggle--collapsed {
+  left: 48px;
+}
+
+@media (max-width: 767.98px) {
+  .app-sidebar-toggle {
+    display: none;
+  }
+}
+
+/* Kanban board: draggable cards and the lane currently under a drag. */
+.app-kanban-card {
+  cursor: grab;
+}
+
+.app-kanban-card:active {
+  cursor: grabbing;
+}
+
+.app-kanban-column--over {
+  outline: 2px dashed var(--color-accent);
+  outline-offset: -2px;
+}
+
+/* Tiptap editable surface inside the shared RichTextEditor. */
+.app-rich-text .ProseMirror {
+  min-height: 140px;
+  outline: none;
+}
+
+.app-rich-text .ProseMirror p {
+  margin: 0 0 var(--spacing-2);
+}
+
+.app-rich-text .ProseMirror > :last-child {
+  margin-bottom: 0;
+}
+
+.app-rich-text .ProseMirror ul,
+.app-rich-text .ProseMirror ol {
+  margin: 0 0 var(--spacing-2);
+  padding-inline-start: var(--spacing-5);
+}
+
+.app-rich-text .ProseMirror blockquote {
+  margin: 0 0 var(--spacing-2);
+  padding-inline-start: var(--spacing-3);
+  border-inline-start: 2px solid var(--color-border);
+  color: var(--color-text-secondary);
+}
+
+.app-rich-text .ProseMirror code {
+  padding: 1px 4px;
+  border-radius: var(--radius-element);
+  background: var(--color-background-muted);
+}
+
+.app-rich-text .ProseMirror pre {
+  margin: 0 0 var(--spacing-2);
+  padding: var(--spacing-3);
+  border-radius: var(--radius-container);
+  background: var(--color-background-muted);
+  overflow-x: auto;
+}
+
+.app-rich-text .ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: var(--color-text-disabled);
+  float: inline-start;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Bell trigger with an unread badge pinned to its corner. */
+.app-notification-trigger {
+  position: relative;
+}
+
+.app-notification-badge {
+  position: absolute;
+  top: -4px;
+  inset-inline-end: -6px;
+  pointer-events: none;
+}
+
+/* Bounded notification list so the tray header stays put with many items. */
+.app-notification-list {
+  max-height: 360px;
+  overflow-y: auto;
+}
